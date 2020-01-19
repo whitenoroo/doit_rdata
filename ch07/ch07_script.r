@@ -69,4 +69,30 @@ mpg %>% filter(!is.na(hwy)) %>%
   summarise(mean_hwy=mean(hwy)) %>% 
   arrange(desc(mean_hwy)) 
 
-#-----------
+
+# ch07-2, Outlier
+
+boxplot(mpg$hwy)
+boxplot(mpg$hwy)$stats
+
+mpg <- as.data.frame(ggplot2::mpg)
+mpg$hwy <- ifelse(mpg$hwy<12 | mpg$hwy>37, NA, mpg$hwy)
+table(is.na(mpg$hwy))
+
+mpg %>% 
+  group_by(drv) %>% 
+  summarise(mean_hwy = mean(hwy, na.rm=T))
+
+
+# p178
+
+
+
+
+
+
+
+
+
+
+
