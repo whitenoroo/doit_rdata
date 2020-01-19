@@ -217,3 +217,92 @@ mpg %>%
   group_by(manufacturer) %>%
   summarise(count=n()) %>%
   arrange(desc(count))
+
+
+# ch06-7 : left_join, bind_rows  ---------------------------------
+
+test1 <- data.frame(id=c(1,2,3,4,5),
+                    midterm=c(60,80,70,90,85))
+
+test2 <- data.frame(id=c(1,2,3,4,5),
+                    final=c(70,83,65,95,80))
+
+test1
+test2
+
+total <- left_join(test1, test2, by="id")
+total
+
+name <- data.frame(class=c(1,2,3,4,5),
+                   teacher=c("kim","lee","park","choi","jung"))
+name
+
+exam_teacher <- left_join(exam, name, by="class")
+exam_teacher
+
+
+
+group_a <- data.frame(id=c(1,2,3,4,5),
+                      test=c(60,80,70,90,85))
+group_b <- data.frame(id=c(6,7,8,9,10),
+                      test=c(70,83,65,95,80))
+
+group_ab <- bind_rows(group_a, group_b)
+group_ab
+
+
+# p156 ----------------------
+
+fuel <- data.frame(fl=c("c", "d", "e", "p", "r"),
+                   price_fl=c(2.35, 2.38, 2.11, 2.76, 2.22),
+                   stringsAsFactors = F)
+
+fuel
+
+mpg_fuel <- left_join(mpg, fuel, by="fl")
+mpg_fuel
+
+mpg_fuel %>% 
+  select(model, fl, price_fl) %>% 
+  head
+
+
+# p160 ----------------------------------
+
+# Q1
+
+?midwest
+
+midwest <- as.data.frame(ggplot2::midwest)
+head(midwest)
+
+midwest %>%  mutate(perminors = (poptotal - popadults)/poptotal*100)
+
+
+# Q2
+
+midwest %>%  
+  mutate(perminors = (poptotal - popadults)/poptotal*100) %>%
+  select(county, perminors) %>%
+  arrange(desc(perminors)) %>%  
+  head(5)
+
+
+# Q3
+
+midwest %>%  
+  mutate(perminors = (poptotal - popadults)/poptotal*100,
+         minorgrade = ifelse(perminors>=40,"large",
+                             ifelse(perminors>=30,"middle","small"))) %>%
+  group_by(minorgrade) %>%
+  summarise(count_minor = n())
+
+# Q4
+
+midwest %>%  
+  mutate(popasian_tot = popasian/sum(poptotal)*100) %>%
+  rename 
+  select(state, county, popasian_tot) %>% 
+  arrange(popasian_tot) %>% 
+  head(10)
+         
