@@ -117,7 +117,103 @@ mpg %>%
   arrange(desc(hwy)) %>% 
   head(5)
 
-# ---------------------------------------------------------------------
+
+# ch06-5 : mutate --------------------------------------------------------------
+
+exam %>% 
+  mutate(total = math + english + science) %>% 
+  head
+
+exam %>% 
+  mutate(total = math + english + science,
+         mean = (math + english + science)/3) %>% 
+  head
+
+exam %>% 
+  mutate(test=ifelse(science>=60, "pass", "fail")) %>% 
+  head
+
+exam %>% 
+  mutate(total = math + english + science,
+         mean = (math + english + science)/3,
+         test=ifelse(mean>=60, "pass", "fail")) %>% 
+  head
 
 
+exam %>% 
+  mutate(total = math + english + science,
+         mean = (math + english + science)/3,
+         test=ifelse(mean>=60, "pass", "fail")) %>%
+  arrange(desc(total)) %>% 
+  head
 
+
+# ch06-6 : group_by, summarise ----------------------------------
+
+exam %>% summarise(mean(math))
+exam %>% summarise(mean_math = mean(math))
+
+exam %>% 
+  group_by(class) %>% 
+  summarise(mean_math = mean(math))
+
+exam %>% 
+  group_by(class) %>% 
+  summarise(mean_math = mean(math),
+            sum_math=sum(math),
+            median_math=median(math),
+            sd_math=sd(math),
+            n=n())
+
+mpg %>% 
+  group_by(manufacturer,drv) %>% 
+  summarise(mean_cty=mean(cty)) %>% 
+  head()
+
+mpg %>%
+  group_by(manufacturer) %>%
+  filter(class=="suv") %>%
+  mutate(tot=(cty+hwy)/2) %>%
+  summarise(mean_tot=mean(tot)) %>%
+  arrange(desc(mean_tot)) %>%
+  head(5)
+
+
+# p144 ---------------------------------------
+
+mpg_new <- mpg
+head(mpg_new)
+mpg_new %>% mutate(fuelcost = cty+hwy) 
+mpg_new %>% mutate(mean_cost = (cty+hwy)/2) 
+
+mpg_new %>%
+  mutate(mean_cost = (cty+hwy)/2) %>% 
+  arrange(desc(mean_cost)) %>%
+  head(3)
+
+mpg_new %>%
+  mutate(fuelcost=cty+hwy,
+         mean_cost = fuelcost/2) %>% 
+  arrange(desc(mean_cost)) %>%
+  head(3)
+
+
+# p150 ------------------------
+
+mpg <- as.data.frame(ggplot2 ::mpg)
+mpg %>%
+  group_by(class) %>%
+  summarise(mean_cty=mean(cty)) %>%
+  arrange(desc(mean_cty))
+
+mpg %>%
+  group_by(manufacturer) %>%
+  summarise(mean_hwy=mean(hwy)) %>%
+  arrange(desc(mean_hwy)) %>%
+  head(3)
+
+mpg %>%
+  filter(class=="compact") %>%
+  group_by(manufacturer) %>%
+  summarise(count=n()) %>%
+  arrange(desc(count))
