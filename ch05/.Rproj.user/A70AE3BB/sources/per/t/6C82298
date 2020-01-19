@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1578812818700.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "643771819",
+    "id" : "6C82298",
+    "lastKnownWriteTime" : 1578819067,
+    "last_content_update" : 1578819067335,
+    "path" : "C:/works/ch05/ch05_script.r",
+    "project_path" : "ch05_script.r",
+    "properties" : {
+        "cursorPosition" : "119,0",
+        "scrollLine" : "100",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

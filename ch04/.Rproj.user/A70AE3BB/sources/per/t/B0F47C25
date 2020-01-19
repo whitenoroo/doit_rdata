@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1578806034621.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3332183929",
+    "id" : "B0F47C25",
+    "lastKnownWriteTime" : 1578812327,
+    "last_content_update" : 1578812327073,
+    "path" : "C:/works/cho4/cho4_1_script.r",
+    "project_path" : "cho4_1_script.r",
+    "properties" : {
+        "cursorPosition" : "124,0",
+        "scrollLine" : "106",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
